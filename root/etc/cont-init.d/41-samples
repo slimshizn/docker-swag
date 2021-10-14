@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+# samples are removed on init by the nginx base
+
+# copy new samples
+[[ -d /defaults/nginx/subdomain-confs/ ]] &&
+    find /defaults/nginx/subdomain-confs/ \
+        -maxdepth 1 \
+        -name "*.conf.sample" \
+        -type f \
+        -exec cp "{}" /config/nginx/subdomain-confs/ +
+
+[[ -d /defaults/nginx/subfolder-confs/ ]] &&
+    find /defaults/nginx/subfolder-confs/ \
+        -maxdepth 1 \
+        -name "*.conf.sample" \
+        -type f \
+        -exec cp "{}" /config/nginx/subfolder-confs/ +

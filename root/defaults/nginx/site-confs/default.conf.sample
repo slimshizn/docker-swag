@@ -1,0 +1,55 @@
+## Version 2022/03/13 - Changelog: https://github.com/linuxserver/docker-swag/commits/master/root/defaults/nginx/site-confs/default.conf.sample
+
+# redirect all traffic to https
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# main server block
+server {
+    include /config/nginx/server-confs/*.conf;
+
+    server_name _;
+
+    root /config/www;
+    index index.html index.htm index.php;
+
+    # enable subfolder method reverse proxy confs
+    include /config/nginx/subfolder-confs/*.conf;
+
+    set $htpasswd_file /config/nginx/.htpasswd;
+    set $auth_basic "Restricted";
+    if (!-f $htpasswd_file) {
+        set $auth_basic off;
+    }
+    location / {
+        include /config/nginx/location-confs/*.conf;
+
+        auth_basic $auth_basic;
+        auth_basic_user_file $htpasswd_file;
+
+        try_files $uri $uri/ /index.html /index.php?$args =404;
+    }
+
+    location ~ ^(.+\.php)(.*)$ {
+        fastcgi_split_path_info ^(.+\.php)(.*)$;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        include /etc/nginx/fastcgi_params;
+    }
+
+    # deny access to .htaccess/.htpasswd files
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
+# enable subdomain method reverse proxy confs
+include /config/nginx/subdomain-confs/*.conf;
+# enable proxy cache for auth
+proxy_cache_path cache/ keys_zone=auth_cache:10m;
