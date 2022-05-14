@@ -21,3 +21,5 @@ cp /config/fail2ban/jail.local /etc/fail2ban/jail.local
     touch /config/log/nginx/error.log
 [[ ! -f /config/log/nginx/access.log ]] && \
     touch /config/log/nginx/access.log
+[[ ! -f /config/log/nginx/unauthorized.log ]] && \
+    touch /config/log/nginx/unauthorized.log
