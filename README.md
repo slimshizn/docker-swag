@@ -335,10 +335,10 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **14.05.22:** - [Existing users should update:](https://github.com/linuxserver/docker-swag/blob/master/README.md#updating-configs) nginx.conf - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes in base](https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84)).
 * **09.04.22:** - Added certbot-dns-loopia for DNS01 validation.
 * **05.04.22:** - Added support for standalone DNS validation.
 * **28.03.22:** - created a logfile for fail2ban nginx-unauthorized in /etc/cont-init.d/50-config
-* **27.11.21:** - [Existing users should update:](https://github.com/linuxserver/docker-swag/blob/master/README.md#updating-configs) nginx.conf - Rebasing to alpine 3.15 with php8. Restructure nginx configs ([see changes in base](https://github.com/linuxserver/docker-baseimage-alpine-nginx/pull/84)).
 * **09.01.22:** - Added a fail2ban jail for nginx unauthorized
 * **21.12.21:** - Fixed issue with iptables not working as expected
 * **30.11.21:** - Move maxmind to a [new mod](https://github.com/linuxserver/docker-mods/tree/swag-maxmind)

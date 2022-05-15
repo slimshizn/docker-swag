@@ -4,7 +4,7 @@
 mkdir -p \
     /config/{fail2ban,crontabs,dns-conf} \
     /config/etc/letsencrypt \
-    /config/log/{fail2ban,letsencrypt} \
+    /config/log/{fail2ban,letsencrypt,nginx} \
     /config/nginx/{subdomain-confs,subfolder-confs} \
     /var/run/fail2ban
 rm -rf /etc/letsencrypt
