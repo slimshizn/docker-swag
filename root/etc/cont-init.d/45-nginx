@@ -1,16 +1,21 @@
 #!/usr/bin/with-contenv bash
 
 # copy default config files if they don't exist
-[[ ! -f /config/nginx/http-confs/unauthorized.conf ]] && \
+if [[ ! -f /config/nginx/http-confs/unauthorized.conf ]]; then
     cp /defaults/nginx/http-confs/unauthorized.conf.sample /config/nginx/http-confs/unauthorized.conf
-[[ ! -f /config/nginx/location-confs/proxy.conf ]] && \
+fi
+if [[ ! -f /config/nginx/location-confs/proxy.conf ]]; then
     cp /defaults/nginx/location-confs/proxy.conf.sample /config/nginx/location-confs/proxy.conf
-[[ ! -f /config/nginx/server-confs/502.conf ]] && \
+fi
+if [[ ! -f /config/nginx/server-confs/502.conf ]]; then
     cp /defaults/nginx/server-confs/502.conf.sample /config/nginx/server-confs/502.conf
-[[ ! -f /config/nginx/server-confs/ssl.conf ]] && \
+fi
+if [[ ! -f /config/nginx/server-confs/ssl.conf ]]; then
     cp /defaults/nginx/server-confs/ssl.conf.sample /config/nginx/server-confs/ssl.conf
-[[ ! -f /config/www/502.html ]] && \
+fi
+if [[ ! -f /config/www/502.html ]]; then
     cp /defaults/www/502.html /config/www/502.html
+fi
 
 # patch authelia-server.conf for CVE-2021-32637
 if [[ -f /config/nginx/server-confs/authelia-server.conf ]]; then
