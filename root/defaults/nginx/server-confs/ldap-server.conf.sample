@@ -4,7 +4,7 @@
 ## for further instructions on this conf, see https://github.com/nginxinc/nginx-ldap-auth
 
 location /ldaplogin {
-    include /config/nginx/server-confs/*.conf;
+    include /config/nginx/location-confs/*.conf;
 
     set $upstream_auth_app ldap-auth;
     set $upstream_auth_port 9000;
@@ -14,7 +14,7 @@ location /ldaplogin {
 }
 
 location = /auth {
-    include /config/nginx/server-confs/*.conf;
+    include /config/nginx/location-confs/*.conf;
 
     set $upstream_auth_app ldap-auth;
     set $upstream_auth_port 8888;
